@@ -16,13 +16,22 @@ export default function HomeScreen() {
   const [isFormVisible, updateFormVisibility] = useState(false);
   const [isPlusIconVisible, updatePlusIconVisibility] = useState(true);
 
+  const hideFormAndDisplayPlusIcon = () => {
+    updateFormVisibility(false);
+    updatePlusIconVisibility(true);
+  };
+
   return (
     <View style={styles.Container}>
       <ImageBackground
         source={require("@/assets/images/desert.jpeg")}
         style={styles.BackgroundImage}
       >
-        {isFormVisible ? <ExpenseForm></ExpenseForm> : <Text>" "</Text>}
+        {isFormVisible ? (
+          <ExpenseForm onClose={hideFormAndDisplayPlusIcon}></ExpenseForm>
+        ) : (
+          <Text>" "</Text>
+        )}
 
         {isPlusIconVisible ? (
           <TouchableOpacity
