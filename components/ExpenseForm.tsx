@@ -6,7 +6,11 @@ interface Expense {
   amount: number;
 }
 
-export default function ExpenseForm() {
+interface ExpenseFormProps {
+  onClose: () => void;
+}
+
+export default function ExpenseForm({ onClose }: ExpenseFormProps) {
   const [remark, setRemark] = useState("");
   const [amount, setAmount] = useState("");
   const [remarkMsg, setRemarkMsg] = useState("");
@@ -31,10 +35,15 @@ export default function ExpenseForm() {
       setAmountMsg("The amount must be a numeric value");
       return;
     }
+
+    // Todo: Add the expenses to a storage
+
+    // Hide the form field
+    onClose();
   };
 
   const cancelFormSubmission = () => {
-    // Do sth later
+    onClose();
   };
 
   return (
